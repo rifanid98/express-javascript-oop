@@ -1,0 +1,58 @@
+tags:
+  name: Members
+  description: Member api.
+
+components:
+  schemas:
+    Member:
+      type: object
+      required: 
+        - id
+        - title
+        - type
+        - image
+        - postDate
+        - textHtml
+      properties:
+        id:
+          type: string
+          description: id generated from mongodb.
+        title:
+          type: string
+          description: title for article
+        type:
+          type: string
+          description: type the article is article or banner.
+        image:
+          type: string
+          description: link images
+        postDate:
+          type: date
+          description: posting date article
+        textHtml:
+          type: string
+          description: content of article
+      example:
+        id: 5ffeb00a10bf940e4c3678dc
+        title: Virus Corona baru di china
+        type: Article
+        image: https://res.cloudinary.com/okedok/image/upload/v1602528092/articles/v88vmkwmkouxkvtisyfy.jpg
+        postDate: 2021-01-13
+        textHtml: <p>Virus Corona baru di china</p>
+
+paths:
+  /members/articles:
+    get:
+      summary: Retrieve a list of JSONPlaceholder users
+      description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
+      tags: [Members]
+      responses:
+        200:
+          description: A list of articles and banners.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Member'
+

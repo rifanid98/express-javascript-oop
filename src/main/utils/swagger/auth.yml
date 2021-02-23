@@ -1,0 +1,85 @@
+tags:
+  name: Auth
+  description: Auth api.
+
+components:
+  schemas:
+    Register:
+      type: object
+      required: 
+        - name
+        - email
+        - phone
+      properties:
+        _id:
+          type: string
+          description: id generated from mongodb.
+        name:
+          type: string
+          description: user name
+        email:
+          type: string
+          description: user email
+        phone:
+          type: string
+          description: user phone
+        picture:
+          type: string
+          description: user avatar
+        facebook_id:
+          type: string
+          description: user facebook id
+        google_id:
+          type: string
+          description: user google id
+        fcmtoken:
+          type: string
+          description: user fcmtoken
+        status:
+          type: enum string
+          description: user status
+        balance:
+          type: decimal
+          description: user balance
+        password:
+          type: string
+          description: user password
+        created_at:
+          type: timestamp
+          description: user created date
+        updated_at:
+          type: datetime
+          description: user updated date
+        deleted_at:
+          type: datetime
+          description: user deleted date
+        created_by:
+          type: string
+          description: user created by, id generated from mongodb.
+        updated_by:
+          type: datetime
+          description: user updated by, id generated from mongodb.
+        deleted_by:
+          type: datetime
+          description: user deleted by, id generated from mongodb.
+      example:
+        name: "Jhon Doe"
+        email: "jhon@doe.com"
+        phone: "89673618293"
+
+paths:
+  /auth/member/register:
+    post:
+      summary: Register new user
+      description: Register new user to okedok database after OTP number was verified.
+      tags: [Auth]
+      responses:
+        200:
+          description: Success response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Register'
+
